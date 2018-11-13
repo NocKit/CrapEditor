@@ -8,15 +8,19 @@
 <div id="app">
     <input class="input" v-model="inputText" placeholder="在这里输入">
     <br>
-    <button class="button" v-on:click="buttonClick">一键辣鸡</button>
+    <button class="button0" v-on:click="buttonClick">一键辣鸡</button>
     <br>
-    <textarea class="output">{{output}}</textarea>
-
+    <button class="button1"
+            data-clipboard-target="#outputText">复制
+    </button>
+    <br>
+    <textarea class="outputArea" id="outputText">{{output}}</textarea>
 </div>
 
 </body>
 </html>
 <script src="https://cdn.bootcss.com/vue/2.5.17/vue.min.js"></script>
+<script src="https://cdn.bootcss.com/clipboard.js/2.0.1/clipboard.js"></script>
 <script>
     var vm = new Vue({
         el: '#app',
@@ -39,9 +43,17 @@
                     alert('你给我输入啊');
 
                 }
-
-            }
+            },
         },
+    });
+
+    let clipboard = new Clipboard('.button1');
+    clipboard.on('success', function(e) {
+        alert('复制成功!');
+        e.clearSelection();
+    });
+    clipboard.on('error', function(e) {
+        alert('请选择“拷贝”进行复制!')
     });
 
 
@@ -68,12 +80,12 @@
         border: solid gray 2px;
     }
 
-    .button {
+    .button0 {
         margin-top: 1%;
         width: 20%;
         height: 5%;
         font-size: 19px;
-        background-color: #ff7700;
+        background-color: #304d8c;
         color: white;
         border: none;
         display: inline-block;
@@ -81,7 +93,20 @@
         line-height: 150%;
     }
 
-    .output {
+    .button1 {
+        margin-top: 1%;
+        width: 20%;
+        height: 5%;
+        font-size: 19px;
+        background-color: #a0363a;
+        color: white;
+        border: none;
+        display: inline-block;
+        border-radius: 2px;
+        line-height: 150%;
+    }
+
+    .outputArea {
         border: solid gray 2px;
         margin-top: 2%;
         height: 80%;
