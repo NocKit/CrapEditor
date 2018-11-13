@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<div id="app">
+  <input class="input" v-model="inputText">
+  <button class="button" v-on:click="buttonClick">一键辣鸡</button>
+  <br>
+  <textarea class="output">{{output}}</textarea>
+
+</div>
+
+</body>
+</html>
+<script src="https://cdn.bootcss.com/vue/2.5.17/vue.js"></script>
+<script>
+  var vm = new Vue({
+    el: '#app',
+    data:{
+      output: '',
+      inputText: '',
+    },
+
+    methods: {
+      buttonClick: function () {
+
+        if (vm.inputText != ''){
+          str = '@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。\n' +
+            '\n' +
+            '以上就是@的全部内容，希望能够帮助到大家。';
+          let newStr = str.replace(/@/g,vm.inputText);
+          vm.output = newStr;
+        } else {
+          vm.output = '';
+          alert('你给我输入啊');
+
+        }
+
+      }
+    },
+  });
+
+
+
+</script>
+<style>
+  div {
+    text-align: center;
+  }
+
+  .input {
+    margin-top: 50px;
+
+  }
+
+
+  .output {
+    margin-top: 50px;
+    height: 300px;
+    width: 50%;
+  }
+</style>
+
+
