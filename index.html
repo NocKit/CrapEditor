@@ -1,93 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>生成辣鸡小编</title>
+    <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 </head>
-<body>
-<div id="app">
-    <input class="input" v-model="inputText" placeholder="在这里输入">
-    <br>
-    <button class="button" v-on:click="buttonClick">一键辣鸡</button>
-    <br>
-    <textarea class="output">{{output}}</textarea>
 
-</div>
+<body>
+    <div id="app">
+        <div class="container ">
+            <div class="row">
+                <div class="col">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="在这里输入" v-model="inputText">
+                        <div class="input-group-append">
+                            <button class="btn btn-primary" type="submit" v-on:click="buttonClick">一键辣鸡</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container" v-show='outShow'>
+            <div class="alert alert-danger">
+                <strong>错误!</strong> 你给我输入啊！
+            </div>
+        </div>
+        <div class="container" v-show="isShow">
+            <div class="card">
+                <div class="card-body">
+                    {{output[0]}}
+                    <br />
+                    {{output[1]}}</div>
+            </div>
+        </div>
+    </div>
 
 </body>
+
 </html>
 <script src="https://cdn.bootcss.com/vue/2.5.17/vue.min.js"></script>
 <script>
     var vm = new Vue({
         el: '#app',
         data: {
-            output: '',
+            output: [],
+            isShow: false,
+            outShow: false,
             inputText: '',
+        },
+
+        mounted() {
+
         },
 
         methods: {
             buttonClick: function () {
-
                 if (vm.inputText != '') {
-                    let str = '@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。\n' +
-                        '\n' +
-                        '以上就是@的全部内容，希望能够帮助到大家。';
-                    let newStr = str.replace(/@/g, vm.inputText);
+                    let str =
+                        '@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。@是什么意思？@是什么梗？@是谁？这个梗又是从何而来？为什么一瞬间就有好多人使用这个梗？为什么大家都在@？相信不少同学都很想了解这个梗，下面就让小编来为大家介绍一下@梗的详细内容。';
+                    let newStr = [];
+                    newStr.push(str.replace(/@/g, vm.inputText));
+                    newStr.push('以上就是@的全部内容，希望能够帮助到大家。'.replace(/@/g, vm.inputText));
                     vm.output = newStr;
+                    vm.isShow = true;
+                    vm.outShow = false;
                 } else {
-                    vm.output = '';
-                    alert('你给我输入啊');
-
+                    vm.output[0] = '';
+                    vm.output[1] = '';
+                    vm.isShow = false;
+                    vm.outShow = true;
                 }
-
-            }
+            },
         },
     });
-
-
 </script>
 <style>
-
-    html, body {
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    div {
-        text-align: center;
-        height: 100%;
-    }
-
-    .input {
-        margin-top: 1%;
-        height: 5%;
-        width: 20%;
-        font-size: 20px;
-        border: solid gray 2px;
-    }
-
-    .button {
-        margin-top: 1%;
-        width: 20%;
-        height: 5%;
-        font-size: 19px;
-        background-color: #ff7700;
-        color: white;
-        border: none;
-        display: inline-block;
-        border-radius: 2px;
-        line-height: 150%;
-    }
-
-    .output {
-        border: solid gray 2px;
-        margin-top: 2%;
-        height: 80%;
-        width: 50%;
-        font-size: 20px;
+    html {
+        margin-top: 20px;
     }
 </style>
-
-
